@@ -5,7 +5,9 @@ class Bootstrap extends Component {
     render() {
 
         return (
-            <div>{ this.props.children }</div>
+            <div className =" h-100">
+                 { this.props.children } 
+            </div>
         )
 
     }

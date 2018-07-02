@@ -1,38 +1,38 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { Link } from 'react-router-dom';
 
-class Home extends Component {
+// class Home extends Component {
 
-    constructor(props) {
+//     constructor(props) {
 
-        super(props);
+//         super(props);
         
-        this.state = {}
+//         this.state = {}
 
-    } 
+//     } 
 
-    componentDidMount() {}
+//     componentDidMount() {}
 
-    componentWillReceiveProps(nextProps) {}
+//     componentWillReceiveProps(nextProps) {}
 
-    render() {
+//     render() {
         
-        return (
-            <div>Hello World</div>
-        )
+//         return (
+//             <div>Hello World</div>
+//         )
         
-    }
+//     }
 
-}
+// }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-    return { 
-        app: state.app
-    };
+//     return { 
+//         app: state.app
+//     };
     
-}
+// }
 
 
-export default connect(mapStateToProps, {})(Home);
+// export default connect(mapStateToProps, {})(Home);
