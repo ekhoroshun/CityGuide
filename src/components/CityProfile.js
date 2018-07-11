@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-console.log("m", moment);
+
 
 
 class CityProfile extends Component {
@@ -120,32 +120,41 @@ class CityProfile extends Component {
       <div
         className="backgr"
         style={{
-          background: "url(" + this.state.background + ") center center fixed",
-
-          height: "100%"
+          backgroundImage: "url(" + this.state.background + ")",
         }}
       >
         <div className="container h-100">
           <div className="row rowA">
             <div className="col-12">
               <div className="row rowAA">
-                <div className="col">
-                  <p>
-                    temperature = {this.state.temperature}, humidity ={" "}
-                    {this.state.humidity}, wind = {this.state.wind}, description
-                    = {this.state.description}
-                  </p>
+                <div className="col ">
+
+
+				<div className="d-flex">
+    			<div className="divA"> <p style ={{fontSize: 30}}> Right now </p>
+     			 <div className="d-flex">
+       			 <div className="divB A" > <p> {Math.round(this.state.temperature)}°</p></div>
+				 <div className="divB B" > 
+							<p>{this.state.description}</p> 
+							<p>{this.state.wind} km/h </p>
+					</div>
+      			</div>
+    			</div> 
+   			 
+  				</div>
+				
                 </div>
-                <div className="col">
-                  <p>
-                    today is {moment().format("LL")}, in
-                    {this.state.city}
-                  </p>
-                </div>
-                <div className="col">
-                  <Link to={`/${this.state.city}/news`}> See some news </Link>
-                  <Link to={`/${this.state.city}/photos`}> See some photos</Link>
+                <div className="col col2">
                   
+					<p className = "descr" >{moment().format("dddd, MMMM Do")}</p>
+					<p className = "cityName ">{this.state.city} </p>
+                 
+                </div>
+                <div className="col col3">
+				<div className = "links">
+                 <li> <button type="button" class="btn btn-dark"><Link to={`/${this.state.city}/news`}>  City news </Link></button></li>
+                 <li> <button type="button" class="btn btn-dark"> <Link to={`/${this.state.city}/photos`}> City photos </Link> </button></li>
+                  </div>
                 </div>
               </div>
               <div className="row rowAB" />
@@ -154,13 +163,14 @@ class CityProfile extends Component {
           <div className="row rowB">
             {this.state.forecast.map((element, index) => {
               return (
-                <div className="col">
-                  <p key={index}>
-                    {console.log(index)}
-                    temperature = {element.main.temp}, humidity ={" "}
-                    {element.main.humidity}, wind = {element.wind.speed},
-                    weather = {element.weather[0].description}
-                  </p>
+                <div className="col forecast" key={index}>
+					{console.log(element)}
+                  	
+                    <li style ={{fontSize:15}}> {element.dt_txt.slice(0, 10)} </li>
+					<li style ={{fontSize:40}}>  {Math.round(element.main.temp)}° </li>
+					
+                    <li>{element.weather[0].description}</li>
+                  
                 </div>
               );
             })}

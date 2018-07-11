@@ -38,7 +38,7 @@ exports.CITIES = [
     { name: 'Asheville' },
     { name: 'Athens-Clarke County' },
     { name: 'Atlanta' },
-    { name: 'Atlantic City' },
+    { name: 'Atlantic' },
     { name: 'Attleboro' },
     { name: 'Auburn' },
     { name: 'Auburn' },

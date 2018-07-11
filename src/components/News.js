@@ -20,50 +20,66 @@ class News extends Component {
 	componentDidMount() {
 		this._mounted = true;
 
-		axios
-			.get(`http://webhose.io/filterWebContent?&format=json`, {
-				params: {
-					token: token,
-					sort: "published",
-					q: this.state.q
-				}
-			})
+		axios.get('http://webhose.io/filterWebContent?token=a6630856-70e3-434f-9322-b3d291330ab4&format=json&ts=1530911706297&sort=relevancy&q=' + this.state.q + '%20rating%3A%3E4')
 
 			.then(res => {
-				console.log(res);
 
-        if (this._mounted) {
+	        	if (this._mounted) {
 					this.setState({
-						feed: res.data
+						feed: res.data.posts
 					});
 				}
-			})
-			//console.log(feed)
-			.catch(error => {
+
+			}).catch(error => {
+
 				console.log(error);
+
 			});
+	
+	}
+
+	renderImage(thread) {
+
+		if(thread.main_image) {
+			return (
+				<a href={ thread.site_section } target="_blank"><img src={thread.main_image}/></a>
+			)
+		} else {
+			return <a href={ thread.site_section } target="_blank"><img src="https://placekitten.com/200/200"/></a>
+		}
 	}
 
 
 	renderPosts() {
+
 		if (this.state.feed.length === 0) {
-			return
-			<div>no news was found</div>;
+
+			return <div>no news was found</div>;
+
 		} else {
-			return
-			console.log(this.state.feed.posts.text),
-				this.state.feed.posts.map((Item, index) => (
-					<p>
-						{Item.text}
-						{Item.published}{" "}
-					</p>
-				));
+
+			return (
+
+				
+                this.state.feed.map(
+
+                    (Post) =>
+                        <div key={Post.uuid}>
+                        	{ Post.thread.title_full }
+                        	{ this.renderImage(Post.thread) }
+                        </div>
+                    ) 
+                
+
+			) 	
+
 		}
 	}
 
 	render() {
-		return <div> news </div>;
+		return <div> {this.renderPosts()} </div>;
 	}
+
 }
 
 export default News;

@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 
 import axios from "axios";
+import { UncontrolledCarousel } from 'reactstrap';
+
+
+
 
 class Photos extends Component {
+
+	
 	constructor(props) {
 		super(props);
 		(this.renderPosts = this.renderPosts.bind(this)),
@@ -39,8 +45,8 @@ class Photos extends Component {
 							  per_page: 6,
 							  geo_context: 2,
 							  page: 1,
-							  accuracy: 11,
-							  //is_commons: true
+							  
+						
 						}
 					}
 				);
@@ -57,29 +63,60 @@ class Photos extends Component {
 			});
 	
 	}
-
+	
 	renderPosts() {
+		const pic = [];
 		//console.log(this.state.feed);
 		if (this.state.feed.length === 0) {
 			return <div>no images were found</div>;
-		} else {
-			return (
-				//console.log(this.state.feed.photos.photo),
-				this.state.feed.photos.photo.map((Item, index) => (
-					<img key={index} src={Item.url_o} />
-				))
-			);
+		} else  {
+			var i;
+			//  this.state.feed.photos.photo.map((Item, index) => (
+			// 	<img  key={index} style = {{width:500}} src={Item.url_o}/>
+			
+					
+			// 	))
+			console.log(this.state.feed.photos)
+				for ( i in this.state.feed.photos){
+					pic.push({
+						src : this.state.feed.photos[i].url_o,
+						altText : i ,
+						caption: i,
+						header: this.state.feed.photos[i].title
+					})
+				}
+				console.log(pic);
+				return pic;
+				
+			
+			
 		}
 	}
+
+	
 	render() {
+		const items = [
+			
+			{	
+				src: this.renderPosts(),
+				altText: 'Slide 1',
+				caption: 'Slide 1',
+				header: 'Slide 1 Header'
+			},
+			  
+		  ];
+		
+		const Example = () => <UncontrolledCarousel items={items} />;
 		return (
-			<div>
-				{!this.state.loading ? (
-					<div>{this.renderPosts()}</div>
-				) : (
-					<div>Loading images</div>
-				)}
-			</div>
+			
+  	<div> {
+		!this.state.loading ? (
+			<div>{<Example />}</div>
+		) : (
+			<div>Loading images</div>
+		)
+	  }
+	  </div>
 		);
 	}
 }
@@ -91,3 +128,11 @@ function mapStateToProps(state) {
 }
 
 export default Photos;
+
+/*
+{!this.state.loading ? (
+							<div>{this.renderPosts()}</div>
+						) : (
+							<div>Loading images</div>
+						)}
+*/

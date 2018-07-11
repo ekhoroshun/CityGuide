@@ -11,6 +11,11 @@ import reducers from './reducers';
 // Styling
 import './sass/bootstrap.scss';
 import './sass/App.scss';
+import './sass/field.scss';
+
+import 'react-select/dist/react-select.css'
+import 'react-virtualized-select/styles.css'
+
 
 // Components
 import Bootstrap from './Bootstrap';
