@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import moment from "moment";
 const token = "a6630856-70e3-434f-9322-b3d291330ab4";
 
 class News extends Component {
@@ -20,8 +20,8 @@ class News extends Component {
 	componentDidMount() {
 		this._mounted = true;
 
-		axios.get('http://webhose.io/filterWebContent?token=a6630856-70e3-434f-9322-b3d291330ab4&format=json&ts=1530911706297&sort=relevancy&q=' + this.state.q + '%20rating%3A%3E4')
-
+		axios.get('http://webhose.io/filterWebContent?token=a6630856-70e3-434f-9322-b3d291330ab4&format=json&ts=1531666818535&sort=performance_score&q= '+ this.state.q +'%20language%3Aenglish%20site_type%3Anews')
+		//http://webhose.io/filterWebContent?token=a6630856-70e3-434f-9322-b3d291330ab4&format=json&ts=1531666818535&sort=performance_score&q=+ this.state.q +%20language%3Aenglish%20site_type%3Anews
 			.then(res => {
 
 	        	if (this._mounted) {
@@ -39,13 +39,13 @@ class News extends Component {
 	}
 
 	renderImage(thread) {
-
+		
 		if(thread.main_image) {
 			return (
-				<a href={ thread.site_section } target="_blank"><img src={thread.main_image}/></a>
+				<a href={ thread.url } target="_blank"><img className="newsImg " src={thread.main_image}/></a>
 			)
 		} else {
-			return <a href={ thread.site_section } target="_blank"><img src="https://placekitten.com/200/200"/></a>
+			return <a href={ thread.url } target="_blank"><img className="newsImgCat" src="https://placekitten.com/200/200"/></a>
 		}
 	}
 
@@ -57,19 +57,31 @@ class News extends Component {
 			return <div>no news was found</div>;
 
 		} else {
-
+			
 			return (
 
 				
+
                 this.state.feed.map(
 
-                    (Post) =>
-                        <div key={Post.uuid}>
-                        	{ Post.thread.title_full }
-                        	{ this.renderImage(Post.thread) }
-                        </div>
+					(Post, index) =>
+						
+
+						<div className="box" key={index}>
+
+						
+                        <div className="newsImg" key={Post.uuid}>
+						{this.renderImage(Post.thread)}
+						<div className="box-body">
+						<h5 className="newsTitle">{ Post.thread.title }</h5>
+						<p className ="siteNews"> {Post.thread.site}</p>
+						<p className = "datePublished "> {moment(Post.thread.published).format('MMM Do')} </p>
+						</div>
+						</div>	
+						</div> 
+						
                     ) 
-                
+               
 
 			) 	
 
@@ -77,7 +89,25 @@ class News extends Component {
 	}
 
 	render() {
-		return <div> {this.renderPosts()} </div>;
+		return (
+		<div className = "container-fluid h-100">
+		<div class="row">
+
+		
+		<div class="col-md">
+      One of three columns
+    </div>
+    <div class="col-md">
+      {this.renderPosts()} 
+    </div>
+    <div class="col-md">
+      One of three columns
+    </div>
+		
+		</div>
+		</div>
+		
+		)
 	}
 
 }

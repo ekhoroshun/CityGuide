@@ -116,6 +116,7 @@ class CityProfile extends Component {
   }
 
   render() {
+	
     return (
       <div
         className="backgr"
@@ -123,14 +124,20 @@ class CityProfile extends Component {
           backgroundImage: "url(" + this.state.background + ")",
         }}
       >
-        <div className="container h-100">
+        <div className="container-fluid h-100">
           <div className="row rowA">
             <div className="col-12">
               <div className="row rowAA">
-                <div className="col ">
+                <div className="col col1">
+
+					<p className = "cityName">{this.state.city} </p>
+				    {/* <p className = "descr" >{moment().format("dddd, MMMM Do")}</p> */}
 
 
-				<div className="d-flex">
+                </div>
+                <div className="col col2 ">
+
+				{/* <div className="d-flex">
     			<div className="divA"> <p style ={{fontSize: 30}}> Right now </p>
      			 <div className="d-flex">
        			 <div className="divB A" > <p> {Math.round(this.state.temperature)}°</p></div>
@@ -141,39 +148,88 @@ class CityProfile extends Component {
       			</div>
     			</div> 
    			 
-  				</div>
-				
-                </div>
-                <div className="col col2">
+  				</div> */}
                   
-					<p className = "descr" >{moment().format("dddd, MMMM Do")}</p>
-					<p className = "cityName ">{this.state.city} </p>
                  
                 </div>
                 <div className="col col3">
-				<div className = "links">
+				{/* <div className = "links">
                  <li> <button type="button" class="btn btn-dark"><Link to={`/${this.state.city}/news`}>  City news </Link></button></li>
                  <li> <button type="button" class="btn btn-dark"> <Link to={`/${this.state.city}/photos`}> City photos </Link> </button></li>
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              <div className="row rowAB" />
+              <div className="row rowAB align-items-end" style={{color:'#fff'}}>
+				
+					<div className="col px-0">
+						<div className="links">
+				  			<ul className="list-inline my-0">
+								<li className="list-inline-item mx-0 city-link"> <Link to={`/${this.state.city}/news`}>  City news </Link></li><li className="list-inline-item photos-link">  <Link to={`/${this.state.city}/photos`}> City photos </Link></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
             </div>
           </div>
           <div className="row rowB">
-            {this.state.forecast.map((element, index) => {
-              return (
-                <div className="col forecast" key={index}>
-					{console.log(element)}
-                  	
-                    <li style ={{fontSize:15}}> {element.dt_txt.slice(0, 10)} </li>
-					<li style ={{fontSize:40}}>  {Math.round(element.main.temp)}° </li>
-					
-                    <li>{element.weather[0].description}</li>
-                  
-                </div>
-              );
-            })}
+
+			<div className="blur"></div>
+			  
+		 	<div className="col child">
+				
+				
+				{/* <div className="d-flex">
+    			<div className="divA"> <p style ={{fontSize: 30}}> Right now </p>
+     			 <div className="d-flex">
+       			 <div className="divB A" > <p> {Math.round(this.state.temperature)}°</p></div>
+				 <div className="divB B" > 
+							<p>{this.state.description}</p> 
+							<p>{this.state.wind} km/h </p>
+					</div>
+      			</div>
+    			</div> 
+   			 
+				</div> */}
+
+				<div className="row forecast align-items-center h-100">
+
+					<div className="col-3">
+
+						<div className="d-flex align-items-center current-day justify-content-center">
+							<div className="curr-temp">
+								{Math.round(this.state.temperature)}°
+							</div>
+							<div className="curr-data">
+								<div className="weather-date">Right Now</div>
+								<div className="weather-desc">{this.state.description}</div>
+							</div>
+						</div>
+
+						<ul className="list-unstyled my-0 text-center d-none">
+							<li className="weather-label weather-date">Right Now </li>
+							<li className="weather-label weather-temp">{Math.round(this.state.temperature)}°</li>
+							<li className="weather-label weather-desc">{this.state.description}</li>
+						</ul>
+					</div>
+
+					{this.state.forecast.map((element, index) => {
+						return (
+
+							<div className="col" key={index}>
+								<ul className="list-unstyled my-0 text-center">
+									<li className="weather-label weather-date">{moment(element.dt_txt).format('MMM Do')} </li>
+									<li className="weather-label weather-temp">{Math.round(element.main.temp)}°</li>
+									<li className="weather-label weather-desc">{element.weather[0].description}</li>
+								</ul>
+							</div>
+
+						);
+					})}
+				</div>
+
+			</div>
           </div>
         </div>
       </div>
