@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import { UncontrolledCarousel } from 'reactstrap';
 
+
+let tokenStr = '563492ad6f917000010000015de6fbde025c4bedae89b91132f70401';
+
+
 class Photos extends Component {
 
 	constructor(props) {
@@ -10,36 +14,30 @@ class Photos extends Component {
 		this.state = {
 			feed: [],
 			loading: false,
-			address: this.props.match.params.cityName
+			city: this.props.match.params.cityName
 		}
 
 	}
 
 	componentDidMount() {
 
-		axios.get("https://maps.googleapis.com/maps/api/geocode/json?", {
-				params: {
-					key: "AIzaSyBaUuQRXKVunMrMPJtu8GK7VX4IzezqPHI",
-					address: this.state.address
-				}
-			}).then(res => {
-				//axios.get(`https://api.pexels.com/v1/search?`,
-				axios.get(`http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&extras=url_o`,
-					{
+		
+				axios.get(`https://api.pexels.com/v1/search?`,
+				//axios.get(`http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&extras=url_o`,
+					{   crossdomain: true,
+						headers: {"Authorization" : `Bearer ${tokenStr}`},
 						params: {
-							api_key: "63033ddf7496e5ce06cb329e43ba3656",
-							lat: res.data.results[0].geometry.location.lat,
-							lon: res.data.results[0].geometry.location.lng,
-							async: 0,
-							per_page: 6,
-							//geo_context: 2,
-							page: 1						
+							
+							query: this.state.city,
+							per_page: 15,
+							page: 1
+													
 						}
 					}
 				).then(res => {
-					console.log("flickr success", res);
+					console.log("pexel success", res);
 
-					if(res.data.photos.photo.length == 0) {
+					if(res.data.photos.length == 0) {
 
 						// no pics situation
 						this.setState({
@@ -54,14 +52,14 @@ class Photos extends Component {
 
 					let pics = []
 
-					for(var i in res.data.photos.photo) {
+					for(var i in res.data.photos) {
 		
 						pics.push({
 							
-							src: res.data.photos.photo[i]["url_o"],
-							altText: res.data.photos.photo[i]["title"],
+							src: res.data.photos[i].src["original"],
+							altText: res.data.photos[i]["photographer"],
 							caption: '',
-							header: res.data.photos.photo[i]["title"]
+							header: res.data.photos[i]["photographer"]
 						});
 
 					}
@@ -72,12 +70,10 @@ class Photos extends Component {
 					});
 
 				}).catch(err => {
-					console.log("flickr error", err);
+					console.log("pexel error", err);
 				})
 
-			}).catch(err => {
-				console.log("googleapis error", err);
-			});
+			
 	
 	}
 
