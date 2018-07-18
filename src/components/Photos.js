@@ -55,7 +55,7 @@ class Photos extends Component {
 		
 						pics.push({
 							
-							src: res.data.photos[i].src["original"],
+							src: res.data.photos[i].src["landscape"],
 							altText: res.data.photos[i]["photographer"],
 							caption: '',
 							header: res.data.photos[i]["photographer"]
@@ -80,11 +80,11 @@ class Photos extends Component {
 
 		if(this.state.loading) {
 
-			return (<div className="warning">Loading images</div>) // images are loading (state 1)
+			return (<div className="container warning">Loading images</div>) // images are loading (state 1)
 			
 		} else if(!this.state.loading && this.state.feed.length == 0) {
 
-			return (<div className="warning">No images</div>) // images are done loading, but no pics are found
+			return (<div className="container warning">No images</div>) // images are done loading, but no pics are found
 
 		} else {
 
@@ -93,13 +93,29 @@ class Photos extends Component {
 		}
 
 	}
+	
 
 	render() {
 		return (
-			<div className = "container-fluid h-100">
+			 <div
+			className="backgrPhotos"
+		 					>
+			<div className = "container h-100">
+
 			<div className = "row">
+			
 			<div className = "col">
-			<div>{this.renderPics()}</div>
+	
+			<div className="buttonBack"> <a href={`/${this.state.city}`} > &laquo; Back</a>
+			
+			 </div>
+
+			<div> {this.renderPics()}
+			
+			
+			</div>
+			 {/* <div> <a href="" class="previous">&laquo; Previous</a> </div> */}
+			</div>
 			</div>
 			</div>
 			</div>

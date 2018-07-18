@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Titles from "./Titles";
+
 
 import axios from "axios";
 import { Link } from "react-router-dom";

@@ -45,7 +45,7 @@ class News extends Component {
     if (thread.main_image) {
       return (
         <a href={thread.url} target="_blank">
-          <img className="newsImg " src={thread.main_image} />
+          <img  onError={(e)=>{e.target.src="https://placekitten.com/200/200"}} className="newsImg " src={thread.main_image} />
         </a>
       );
     } else {
@@ -67,19 +67,25 @@ class News extends Component {
 			
 		} else{
       return this.state.feed.map((Post, index) => (
+
         <div className="box" key={index}>
+		 <div className="col">
           <div className="newsImg" key={Post.uuid}>
             {this.renderImage(Post.thread)}
-            <div className="box-body">
-              <h5 className="newsTitle"><a className ="links" href={Post.thread.url}>{Post.thread.title}</a></h5>
+           
+			<div className = "row forTitle align-items-end ">
+              <h5 className="newsTitle"><a className ="links" href={Post.thread.url}>{Post.thread.title.slice(0,80)}...</a></h5>
+			  </div>
+			  <div className = "row forOther align-items-top ">
               <p className="siteNews"><a className ="links" href={Post.thread.url}> {Post.thread.site}</a></p>
+			  
               <p className="datePublished ">
                 {" "}
-                {moment(Post.thread.published).format("MMM Do")}{" "}
-              </p>
+                {moment(Post.thread.published).format("MMM Do")}{" "}</p>
+				</div>
+              </div>
             </div>
-          </div>
-        </div>
+         </div>
 	  ));
 	}
     }
@@ -87,11 +93,12 @@ class News extends Component {
 
   render() {
     return (
+	
       <div className="container-fluid h-100">
-        <div class="row">
-          <div class="col-sm"></div>
-          <div class="col-lg">{this.renderPosts()}</div>
-          <div class="col-sm"></div>
+        <div className="row">
+          <div className="col-sm"></div>
+          <div className="col-lg">{this.renderPosts()}</div>
+          <div className="col-sm"></div>
         </div>
       </div>
     );
