@@ -98,7 +98,11 @@ class Photos extends Component {
 	render() {
 		return (
 			<div className = "container-fluid h-100">
+			<div className = "row">
+			<div className = "col">
 			<div>{this.renderPics()}</div>
+			</div>
+			</div>
 			</div>
 		)
 	}

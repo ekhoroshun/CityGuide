@@ -9,7 +9,8 @@ class News extends Component {
 
     this.state = {
       feed: [],
-      q: this.props.match.params.cityName
+	  q: this.props.match.params.cityName,
+	  loading: true
     };
   }
 
@@ -30,7 +31,8 @@ class News extends Component {
       .then(res => {
         if (this._mounted) {
           this.setState({
-            feed: res.data.posts
+			feed: res.data.posts,
+			loading: false
           });
         }
       })
@@ -56,16 +58,21 @@ class News extends Component {
   }
 
   renderPosts() {
-    if (this.state.feed.length === 0) {
-      return <div>no news was found</div>;
+    if (!this.state.loading && this.state.feed.length === 0) {
+      return (<div>no news was found</div>)
     } else {
+		if(this.state.loading) {
+
+			return (<div>Loading news</div>) // images are loading (state 1)
+			
+		} else{
       return this.state.feed.map((Post, index) => (
         <div className="box" key={index}>
           <div className="newsImg" key={Post.uuid}>
             {this.renderImage(Post.thread)}
             <div className="box-body">
-              <h5 className="newsTitle">{Post.thread.title}</h5>
-              <p className="siteNews"> {Post.thread.site}</p>
+              <h5 className="newsTitle"><a className ="links" href={Post.thread.url}>{Post.thread.title}</a></h5>
+              <p className="siteNews"><a className ="links" href={Post.thread.url}> {Post.thread.site}</a></p>
               <p className="datePublished ">
                 {" "}
                 {moment(Post.thread.published).format("MMM Do")}{" "}
@@ -73,7 +80,8 @@ class News extends Component {
             </div>
           </div>
         </div>
-      ));
+	  ));
+	}
     }
   }
 
@@ -81,9 +89,9 @@ class News extends Component {
     return (
       <div className="container-fluid h-100">
         <div class="row">
-          <div class="col-md">One of three columns</div>
-          <div class="col-md">{this.renderPosts()}</div>
-          <div class="col-md">One of three columns</div>
+          <div class="col-sm"></div>
+          <div class="col-lg">{this.renderPosts()}</div>
+          <div class="col-sm"></div>
         </div>
       </div>
     );
