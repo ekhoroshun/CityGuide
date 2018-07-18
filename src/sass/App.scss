@@ -177,7 +177,7 @@ html, body {
   padding-top: 40px;
   padding-bottom: 40px;
   position: relative;
-  width: auto;
+  height: auto;
   
 }
 
@@ -193,8 +193,8 @@ html, body {
     text-shadow: 2px 2px 4px #000000;
     color: white;
     line-height: 20px;
-   margin-left: 10px;
-   margin-right: 10px;
+   margin-left: 15px;
+   margin-right: 15px;
 
     
   
@@ -205,17 +205,17 @@ position: relative;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 border-radius: 8px;
 width: 100%;
-height: 200px;
+
 }
 
 .newsImgCat{
   position: relative;
 
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
 
-width: 100%;
-height: 200px;
+  width: 100%;
+
 }
 
 .datePublished{
@@ -226,7 +226,7 @@ height: 200px;
   font-weight: 500;
   color: white;
   top: 20px;
-  margin-left: 10px;
+  margin-left: 15px;
   
   
 }
@@ -238,17 +238,13 @@ height: 200px;
   font-size: 13px;
   font-weight: 300;
   color: white;
-  top: 50px;
-  margin-left: 10px;
+  top: 40px;
+  margin-left: 15px;
   
   padding-bottom: auto;
 }
-.carousel-inner{
-.img {
-  width:100%;
-  height: auto;
-}
-}
+
+
 
 .links {
   
@@ -267,3 +263,4 @@ height: 200px;
   color: white;
   font-weight: 600;
 }
+

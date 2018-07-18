@@ -5,7 +5,6 @@ import { UncontrolledCarousel } from 'reactstrap';
 
 let tokenStr = '563492ad6f917000010000015de6fbde025c4bedae89b91132f70401';
 
-
 class Photos extends Component {
 
 	constructor(props) {
@@ -89,7 +88,7 @@ class Photos extends Component {
 
 		} else {
 
-			return (<UncontrolledCarousel items={this.state.feed} />) // loaded and pics are present
+			return (<UncontrolledCarousel  items={this.state.feed} />) // loaded and pics are present
 
 		}
 
