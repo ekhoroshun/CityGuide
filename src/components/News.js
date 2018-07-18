@@ -59,11 +59,11 @@ class News extends Component {
 
   renderPosts() {
     if (!this.state.loading && this.state.feed.length === 0) {
-      return (<div>no news was found</div>)
+      return (<div className="warning">no news was found</div>)
     } else {
 		if(this.state.loading) {
 
-			return (<div>Loading news</div>) // images are loading (state 1)
+			return (<div className="warning" >Loading news</div>) // images are loading (state 1)
 			
 		} else{
       return this.state.feed.map((Post, index) => (

@@ -81,11 +81,11 @@ class Photos extends Component {
 
 		if(this.state.loading) {
 
-			return (<div>Loading images</div>) // images are loading (state 1)
+			return (<div className="warning">Loading images</div>) // images are loading (state 1)
 			
 		} else if(!this.state.loading && this.state.feed.length == 0) {
 
-			return (<div>No images</div>) // images are done loading, but no pics are found
+			return (<div className="warning">No images</div>) // images are done loading, but no pics are found
 
 		} else {
 
