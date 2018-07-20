@@ -45,11 +45,11 @@ class News extends Component {
     if (thread.main_image) {
       return (
         <a href={thread.url} target="_blank">
-          <img
+          <img 
             onError={e => {
               e.target.src = "https://placekitten.com/200/200";
             }}
-            className="newsImg"
+            className="card-img-top"
             src={thread.main_image}
           />
         </a>
@@ -57,63 +57,65 @@ class News extends Component {
     } else {
       return (
         <a href={thread.url} target="_blank">
-          <img className="newsImgCat" src="https://placekitten.com/200/200" />
+          <img className="card-img-top" src="https://placekitten.com/200/200" />
         </a>
       );
     }
   }
 
-  renderPosts(element) {
-    // if (!this.state.loading && this.state.feed.length === 0) {
-    //   return (<div className="warning">no news was found</div>)
-    // } else {
-    // if(this.state.loading) {
+  renderPosts() {
+    if (!this.state.loading && this.state.feed.length === 0) {
+      return (<div className="container warning">no news was found</div>)
+    } else {
+    if(this.state.loading) {
 
-    // 	return (<div className="warning" >Loading news</div>) // images are loading (state 1)
+    	return (<div className="container warning" >Loading news</div>) // images are loading (state 1)
 
-    // } else{
+    } else{
 
     return this.state.feed.map((Post, index) => (
       <div className="col-4 news-wrapper">
-        <div className="news-item" key={index}>
-          <div key={Post.uuid}>
-            {this.renderImage(Post.thread)}
 
-            <div className="forTitle">
-              <h5 className="newsTitle">
-                <a className="links" href={Post.thread.url}>
+        <div className="card" key={index}>
+          <div  key={Post.uuid}>
+            {this.renderImage(Post.thread)}
+            <div className = "card-body">
+           
+              <h5 class="card-title">
+                <a className="linksNews" href={Post.thread.url}>
                   {Post.thread.title.slice(0, 80)}...
                 </a>
               </h5>
-            </div>
-            <div className="forOther">
-              <p className="siteNews">
-                <a className="links" href={Post.thread.url}>
+            
+            <div className=" card-footer">
+              <p >
+                <a className="linksNews" href={Post.thread.url}>
                   {" "}
                   {Post.thread.site}
                 </a>
               </p>
 
-              <p className="datePublished ">
+              <p className="card-text ">
                 {" "}
                 {moment(Post.thread.published).format("MMM Do")}{" "}
               </p>
+             </div>
             </div>
           </div>
         </div>
       </div>
     ));
   }
-  //   }
-  // }
+    }
+  }
 
   render() {
     return (
       <div className="container">
         <div className="row justify-content-center">
-          {this.state.feed.map((element, index) => {
-            return this.renderPosts(element);
-          })}
+          
+           { this.renderPosts()}
+        
         </div>
       </div>
     );
