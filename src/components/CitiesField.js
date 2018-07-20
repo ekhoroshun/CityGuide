@@ -49,7 +49,7 @@ class CitiesField extends Component{
 			<div className="section">
 				<h3 className="section-heading">Choose a city </h3>
 				<VirtualizedSelect 
-					className="searcher"
+					className =" searcher"
 					ref="citySelect"
 					options={options}
 					simpleValue

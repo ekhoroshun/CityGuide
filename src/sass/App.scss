@@ -170,82 +170,63 @@ html, body {
 
 }
 
-.box
-{
-  //background: rgb(255, 255, 255);
- // border: 1px solid black;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  
-  
-  
-}
 
-.forTitle{
-  border: black 1px solid;
-}
 
-.newsTitle{
-
-  
-  
-  font-size: 18px;
-  font-weight: 700;
-  position: absolute;
-    bottom: 20px;
-    //right: 20px;
-    text-shadow: 2px 2px 4px #000000;
-    color: white;
-    line-height: 30px;
-   margin-left: 15px;
-   margin-right: 15px;
-
-    
-  
-}
-.newsImg{
+.news-item{
+ 
 position: relative;
+//order:1px solid #666;
+margin-bottom: 20px;
 
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-border-radius: 8px;
-width: 100%;
-
+.newsImg{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width:100%;
+    }
+  }
+.forTitle{
+  
+  //border: black 1px solid;
+  position: absolute;
+  bottom:0px;
+  width:100%;
 }
 
-.newsImgCat{
-  position: relative;
-
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 8px;
-
-  width: 100%;
+.forOther{
+ // border: black 1px solid;
+  position: absolute;
+  top:0px;
+  width:100%;
+}
+.newsTitle{
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
 
 }
 
 .datePublished{
   text-transform: uppercase;
   color: white;
-  position: absolute;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   font-size: 15px;
   font-weight: 500;
   color: white;
-  top: 20px;
-  margin-left: 15px;
-  
+  margin-left: 10px;
   
 }
 
 .siteNews{
- 
-  
-  position: absolute;
+  margin-bottom: 6px;
+  margin-top: 10px;
+  margin-left: 10px;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   font-size: 13px;
   font-weight: 300;
   color: white;
-  top: 40px;
-  margin-left: 15px;
-  
-  padding-bottom: auto;
+ 
 }
 
 
