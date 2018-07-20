@@ -9,8 +9,8 @@ class News extends Component {
 
     this.state = {
       feed: [],
-	  q: this.props.match.params.cityName,
-	  loading: true
+      q: this.props.match.params.cityName,
+      loading: true
     };
   }
 
@@ -31,8 +31,8 @@ class News extends Component {
       .then(res => {
         if (this._mounted) {
           this.setState({
-			feed: res.data.posts,
-			loading: false
+            feed: res.data.posts,
+            loading: false
           });
         }
       })
@@ -45,59 +45,75 @@ class News extends Component {
     if (thread.main_image) {
       return (
         <a href={thread.url} target="_blank">
-          <img  onError={(e)=>{e.target.src="https://placekitten.com/200/200"}} className="newsImg" src={thread.main_image} />
+          <img
+            onError={e => {
+              e.target.src = "https://placekitten.com/200/200";
+            }}
+            className="newsImg"
+            src={thread.main_image}
+          />
         </a>
       );
     } else {
       return (
         <a href={thread.url} target="_blank">
-          <img className="newsImg" src="https://placekitten.com/200/200" />
+          <img className="newsImgCat" src="https://placekitten.com/200/200" />
         </a>
       );
     }
   }
 
-  renderPosts() {
-    if (!this.state.loading && this.state.feed.length === 0) {
-      return (<div className="warning">no news was found</div>)
-    } else {
-		if(this.state.loading) {
+  renderPosts(element) {
+    // if (!this.state.loading && this.state.feed.length === 0) {
+    //   return (<div className="warning">no news was found</div>)
+    // } else {
+    // if(this.state.loading) {
 
-			return (<div className="warning" >Loading news</div>) // images are loading (state 1)
-			
-		} else{
-      return this.state.feed.map((Post, index) => (
+    // 	return (<div className="warning" >Loading news</div>) // images are loading (state 1)
 
+    // } else{
+
+    return this.state.feed.map((Post, index) => (
+      <div className="col-4 news-wrapper">
         <div className="news-item" key={index}>
-		  
           <div key={Post.uuid}>
             {this.renderImage(Post.thread)}
-           
-			<div className = "forTitle">
-              <h5 className="newsTitle"><a className ="links" href={Post.thread.url}>{Post.thread.title.slice(0,80)}...</a></h5>
-			  </div>
-			  <div className = "forOther">
-              <p className="siteNews"><a className ="links" href={Post.thread.url}> {Post.thread.site}</a></p>
-			  
+
+            <div className="forTitle">
+              <h5 className="newsTitle">
+                <a className="links" href={Post.thread.url}>
+                  {Post.thread.title.slice(0, 80)}...
+                </a>
+              </h5>
+            </div>
+            <div className="forOther">
+              <p className="siteNews">
+                <a className="links" href={Post.thread.url}>
+                  {" "}
+                  {Post.thread.site}
+                </a>
+              </p>
+
               <p className="datePublished ">
                 {" "}
-                {moment(Post.thread.published).format("MMM Do")}{" "}</p>
-				</div>
-              </div>
+                {moment(Post.thread.published).format("MMM Do")}{" "}
+              </p>
             </div>
-         
-	  ));
-	}
-    }
+          </div>
+        </div>
+      </div>
+    ));
   }
+  //   }
+  // }
 
   render() {
     return (
-	
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-6 news-wrapper"> {this.renderPosts()}</div>
-         
+          {this.state.feed.map((element, index) => {
+            return this.renderPosts(element);
+          })}
         </div>
       </div>
     );

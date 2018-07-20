@@ -79,7 +79,7 @@ class Photos extends Component {
     return (
       <div className="backgrPhotos">
         <div className="container h-100">
-          <div className="row">
+          <div className="row align-items-center h-100">
             <div className="col">
               <div className="buttonBack">
                 {" "}
