@@ -74,8 +74,9 @@ class News extends Component {
     } else{
 
     return this.state.feed.map((Post, index) => (
-      <div className="col-4 news-wrapper">
-
+      
+     
+     
         <div className="card" key={index}>
           <div  key={Post.uuid}>
             {this.renderImage(Post.thread)}
@@ -103,7 +104,7 @@ class News extends Component {
             </div>
           </div>
         </div>
-      </div>
+     
     ));
   }
     }
@@ -112,7 +113,8 @@ class News extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row justify-content-center">
+
+        <div class="card-columns">
           
            { this.renderPosts()}
         
