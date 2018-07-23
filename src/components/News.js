@@ -83,20 +83,20 @@ class News extends Component {
             <div className = "card-body">
            
               <h5 class="card-title">
-                <a className="linksNews" href={Post.thread.url}>
+                <a className="linksNewsTitle" href={Post.thread.url}>
                   {Post.thread.title.slice(0, 80)}...
                 </a>
               </h5>
             
             <div className=" card-footer">
-              <p >
-                <a className="linksNews" href={Post.thread.url}>
+              <p className="linkNewsParagraph">
+                <a className="linksNewsUrl" href={Post.thread.url}>
                   {" "}
                   {Post.thread.site}
                 </a>
               </p>
 
-              <p className="card-text ">
+              <p className="card-text">
                 {" "}
                 {moment(Post.thread.published).format("MMM Do")}{" "}
               </p>
