@@ -171,7 +171,17 @@ html, body {
 }
 
 .card{
+  border: 1px solid rgba(105, 105, 105, 1);
   
+}
+.paragraph1{
+  margin: 0;
+  padding: 15px;
+}
+.paragraph2{
+  margin: 0;
+  padding-left: 15px;
+  padding-bottom: 15px;
   
 }
 
@@ -186,13 +196,10 @@ html, body {
 
 }
 
-.linkNewsParagraph{
-  margin: 0px;
-  padding-bottom: 10px;
-}
+
 .linksNewsUrl {
-  
-  font-size: 15px;
+ 
+  font-size: 17px;
   text-decoration: none;
   color: rgb(104, 104, 104);
     &.linksNewsUrl:hover{
@@ -204,7 +211,6 @@ html, body {
   margin: 0;
   padding: 15px;
   
-
 }
 .card-text{
   font-weight: 300;
@@ -213,10 +219,13 @@ html, body {
 }
 .card-body{
 padding: 0px;
+
 }
 .card-footer{
-  padding-left: 15px;
-  padding-bottom: 15px;
+  padding: 0px;
+  // padding-left: 15px;
+  // padding-bottom: 15px;
+ 
 }
 
 

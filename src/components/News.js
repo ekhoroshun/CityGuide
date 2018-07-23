@@ -89,17 +89,18 @@ class News extends Component {
               </h5>
             
             <div className=" card-footer">
-              <p className="linkNewsParagraph">
+              <p className = "paragraph1">
                 <a className="linksNewsUrl" href={Post.thread.url}>
                   {" "}
                   {Post.thread.site}
                 </a>
               </p>
 
-              <p className="card-text">
+              <p className = "paragraph2">
                 {" "}
                 {moment(Post.thread.published).format("MMM Do")}{" "}
-              </p>
+                
+             </p>
              </div>
             </div>
           </div>
