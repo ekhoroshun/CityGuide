@@ -170,8 +170,11 @@ html, body {
 
 }
 
+.card-columns .card {
+  margin-bottom: 20px; 
+} 
 .card{
-  border: 1px solid rgba(105, 105, 105, 1);
+  border: 1px solid rgb(155, 155, 155);
   
 }
 .paragraph1{
@@ -287,3 +290,9 @@ padding: 0px;
   
 }
 
+.backgrNews{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}

@@ -5,6 +5,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+import { BrowserRouter as Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
 class CityProfile extends Component {
   constructor(props) {
     super(props);
@@ -18,9 +22,14 @@ class CityProfile extends Component {
       background: [],
       loading: true,
       wind: "",
-      forecast: []
+      forecast: [],
+      
     };
   }
+ 
+
+  
+
 
   componentDidMount() {
     axios
@@ -101,23 +110,32 @@ class CityProfile extends Component {
       .then(res => {
         //console.log(res);
         let image = res.data.results[0].urls.full;
-
+        console.log(image)
         this.setState({
           background: image,
           loading: false
+          
         });
+       
+        
       })
       .catch(error => {
         console.log(error);
       });
+
+    
   }
 
   render() {
+    
     return (
       <div
         className="backgr"
+       
         style={{
+          
           backgroundImage: "url(" + this.state.background + ")"
+
         }}
       >
         <div className="container-fluid h-100">
@@ -158,7 +176,7 @@ class CityProfile extends Component {
                     <ul className="list-inline my-0">
                       <li className="list-inline-item mx-0 city-link">
                         {" "}
-                        <Link to={`/${this.state.city}/news`}> City news </Link>
+                        <Link to={ { pathname: `/${this.state.city}/news`, state: {backgroundPicture: this.state.background} } }> City news </Link>
                       </li>
                       <li className="list-inline-item photos-link">
                         {" "}
@@ -241,4 +259,4 @@ class CityProfile extends Component {
   }
 }
 
-export default CityProfile;
+export default withRouter(CityProfile);

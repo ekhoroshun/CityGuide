@@ -8,10 +8,12 @@ class News extends Component {
     super(props);
 
     this.state = {
+      background: this.props.location.state.backgroundPicture,
       feed: [],
       q: this.props.match.params.cityName,
       loading: true
     };
+    console.log(this.props)
   }
 
   componentWillUnmount() {
@@ -99,7 +101,7 @@ class News extends Component {
               <p className = "paragraph2">
                 {" "}
                 {moment(Post.thread.published).format("MMM Do")}{" "}
-                
+
              </p>
              </div>
             </div>
@@ -113,13 +115,20 @@ class News extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div
+        className="backgrNews"
+        style={{
+          backgroundImage: "url(" + this.state.background + ")"
+        }}
+      >
+      <div className="container h-100">
 
-        <div class="card-columns">
+        <div className="card-columns">
           
            { this.renderPosts()}
         
         </div>
+      </div>
       </div>
     );
   }
