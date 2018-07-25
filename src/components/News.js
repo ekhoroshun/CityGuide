@@ -23,6 +23,7 @@ class News extends Component {
   componentDidMount() {
     this._mounted = true;
 
+
     axios
       .get(
         "http://webhose.io/filterWebContent?token=a6630856-70e3-434f-9322-b3d291330ab4&format=json&ts=1531666818535&sort=performance_score&q= " +
@@ -49,7 +50,7 @@ class News extends Component {
         <a href={thread.url} target="_blank">
           <img 
             onError={e => {
-              e.target.src = "https://placekitten.com/200/200";
+              e.target.src = "https://placekitten.com/200/100";
             }}
             className="card-img-top"
             src={thread.main_image}
@@ -59,7 +60,7 @@ class News extends Component {
     } else {
       return (
         <a href={thread.url} target="_blank">
-          <img className="card-img-top" src="https://placekitten.com/200/200" />
+          <img className="card-img-top" src="https://placekitten.com/200/100" />
         </a>
       );
     }
@@ -67,70 +68,87 @@ class News extends Component {
 
   renderPosts() {
     if (!this.state.loading && this.state.feed.length === 0) {
-      return (<div className="container warning">no news was found</div>)
+      return (<div className="row h-100 justify-content-center align-items-center"><div className="col-4 warningNews text-center">No news</div></div>)
     } else {
     if(this.state.loading) {
 
-    	return (<div className="container warning" >Loading news</div>) // images are loading (state 1)
+    	return (<div className="row h-100 justify-content-center align-items-center"><div className="col-4 warningNews text-center">Loading news</div></div>) // images are loading (state 1)
 
     } else{
 
-    return this.state.feed.map((Post, index) => (
-      
-     
-     
-        <div className="card" key={index}>
-          <div  key={Post.uuid}>
-            {this.renderImage(Post.thread)}
-            <div className = "card-body">
-           
-              <h5 class="card-title">
-                <a className="linksNewsTitle" href={Post.thread.url}>
-                  {Post.thread.title.slice(0, 80)}...
-                </a>
-              </h5>
-            
-            <div className=" card-footer">
-              <p className = "paragraph1">
-                <a className="linksNewsUrl" href={Post.thread.url}>
-                  {" "}
-                  {Post.thread.site}
-                </a>
-              </p>
+      return (
 
-              <p className = "paragraph2">
-                {" "}
-                {moment(Post.thread.published).format("MMM Do")}{" "}
+        <div>
 
-             </p>
-             </div>
+          <div className="row">
+            <div className="col-12 my-4">
+              <a className="text-white" href={`/${this.state.city}`}> &laquo; Back</a>
             </div>
           </div>
+
+
+        <div className="card-columns">
+          {
+            this.state.feed.map((Post, index) => (
+              <div className="card" key={index}>
+                <div  key={Post.uuid}>
+                  {this.renderImage(Post.thread)}
+                  <div className = "card-body">
+                
+                    <h5 className="card-title">
+                      <a className="linksNewsTitle" href={Post.thread.url}>
+                        {Post.thread.title.slice(0, 80)}...
+                      </a>
+                    </h5>
+                  
+                  <div className=" card-footer">
+                    <p className = "paragraph1">
+                      <a className="linksNewsUrl" href={Post.thread.url}>
+                        {" "}
+                        {Post.thread.site}
+                      </a>
+                    </p>
+
+                    <p className = "paragraph2">
+                      {" "}
+                      {moment(Post.thread.published).format("MMM Do")}{" "}
+
+                  </p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
-     
-    ));
-  }
+
+        </div>
+
+      )
+
+    }
     }
   }
+  
 
   render() {
+
     return (
       <div
-        className="backgrNews"
+        className="backgrNews h-100"
         style={{
           backgroundImage: "url(" + this.state.background + ")"
         }}
       >
-      <div className="container h-100">
+        <div className="container h-100">
 
-        <div className="card-columns">
+                    
+              { this.renderPosts() }
           
-           { this.renderPosts()}
-        
+          
         </div>
       </div>
-      </div>
-    );
+    )
   }
 }
 
