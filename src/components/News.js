@@ -82,7 +82,8 @@ class News extends Component {
 
           <div className="row">
             <div className="col-12 my-4">
-              <a className="text-white" href={`/${this.state.city}`}> &laquo; Back</a>
+            {console.log(this.state.q)}
+              <a className="text-white" href={`/${this.state.q}`}> &laquo; Back</a>
             </div>
           </div>
 
